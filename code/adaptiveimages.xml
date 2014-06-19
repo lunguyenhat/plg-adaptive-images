@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" client="site" type="plugin" group="system" method="upgrade">
-	<name>PLG_SYSTEM_ADAPTIVE_IMAGE</name>
+	<name>PLG_SYSTEM_ADAPTIVEIMAGES</name>
 	<version>0.1</version>
 	<creationDate>June 2014</creationDate>
 	<author>redCOMPONENT.com</author>
 	<copyright>redCOMPONENT.com</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<description>PLG_SYSTEM_ADAPTIVE_IMAGE_DESC</description>
+	<description>PLG_SYSTEM_ADAPTIVEIMAGES_DESC</description>
 	<files>
-		<filename plugin="adaptive_images">adaptive_images.php</filename>
+		<filename plugin="adaptiveimages">adaptiveimages.php</filename>
 		<filename>index.html</filename>
 	</files>
 	<languages folder="language">
-		<language tag="en-GB">en-GB/en-GB.plg_system_adaptive_images.ini</language>
-		<language tag="en-GB">en-GB/en-GB.plg_system_adaptive_images.sys.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_adaptiveimages.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_adaptiveimages.sys.ini</language>
 	</languages>
 </extension>

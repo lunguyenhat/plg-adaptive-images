@@ -8,19 +8,23 @@
 
     <property
             name="extension"
-            value="${plg.name}"
-            override="true" />
-
-    <property
-            name="version"
-            value="${plg.version}"
+            value="${comp.name}"
             override="true" />
 
     <!-- Folder where the redSHOP repository is located  -->
     <property
             name="extpath"
-            value="${repo.dir}/code"
+            value="${repo.dir}"
             override="true" />
+
+    <!-- Load extension property in XML file -->
+    <xmlproperty file="${extpath}/pkg_${extension}.xml" prefix="extensionDetails" keepRoot="false" />
+
+    <!-- Get extension version from XML -->
+    <property
+            name="version"
+            value="${extensionDetails.version}"
+            override="true"/>
 
     <!-- Target dir where packages will be created  -->
     <property
@@ -53,11 +57,27 @@
     <target name="build" depends="prepare">
 
         <echo msg="Copying CODE folder to build directory..." />
-        <copy todir="${targetdir}">
-            <fileset dir="${extpath}">
+        <copy todir="${targetdir}/adaptiveimages">
+            <fileset dir="${extpath}/code">
                 <exclude name=".*" />
             </fileset>
         </copy>
+
+        <echo msg="Copying redCORE LIBRARIES folder to build directory..."/>
+        <copy todir="${targetdir}/redCORE">
+            <fileset dir="${extpath}/redCORE">
+                <include name="**"/>
+                <exclude name=".*"/>
+                <exclude name="build.*"/>
+                <exclude name="*.md"/>
+                <!-- reduce redCORE package -->
+                <exclude name="media/redcore/js/lib/jquery-ui/jquery-ui.js"/>
+                <exclude name="media/redcore/css/lib/bootstrap/css/bootstrap.css"/>
+            </fileset>
+        </copy>
+
+        <!-- Languages -->
+        <copy file="${extpath}/pkg_${extension}.xml" tofile="${package.dir}/pkg_${extension}.xml" overwrite="true" />
 
     </target>
 
@@ -66,11 +86,26 @@
     <!-- ============================================  -->
     <target name="dist" depends="build">
         <echo msg="Creating ZIP archive..." />
+        <mkdir dir="${package.dir}/packages" />
 
-        <zip destfile="${targetdir}/../plg_${extension}-v${version}.zip">
-            <fileset dir="${targetdir}">
+        <zip destfile="${package.dir}/packages/plg_system_${extension}.zip">
+            <fileset dir="${targetdir}/${extension}">
                 <include name="**" />
                 <exclude name=".*" />
+            </fileset>
+        </zip>
+
+        <zip destfile="${package.dir}/packages/redCORE.zip">
+            <fileset dir="${targetdir}/redCORE">
+                <include name="**" />
+                <exclude name=".*" />
+            </fileset>
+        </zip>
+
+        <zip destfile="${package.dir}/pkg_${extension}.zip">
+            <fileset dir="${package.dir}">
+                <include name="packages/**" />
+                <include name="pkg_${extension}.xml" />
             </fileset>
         </zip>
 

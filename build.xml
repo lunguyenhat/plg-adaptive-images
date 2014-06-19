@@ -4,10 +4,12 @@
 <!-- This PHING build file copies the current extension files form repo    -->
 <!-- ==================================================================    -->
 <project name="adaptive_images" default="site" basedir=".">
+	<import file="./redCORE/build.xml"/>
+
 	<!-- Do initialization stuff -->
 	<property
 			name="extension"
-			value="${plg.name}"
+			value="${comp.name}"
 			override="true" />
 
 	<target name="prepare" >
@@ -22,11 +24,11 @@
 
 	<property name="src" value="./code" />
 
-	<target name="site" description="Copies files to a existing joomla site" depends="prepare">
+	<target name="site" description="Copies files to a existing joomla site" depends="redCORE-submodul, prepare">
 
 		<!-- Plugin -->
 		<echo message="Copying plugin..." />
-		<copy todir="${www.dir}/plugins/system/adaptive_images" overwrite="true">
+		<copy todir="${www.dir}/plugins/system/adaptiveimages" overwrite="true">
 			<fileset dir="${src}">
                 <exclude name="language/**"/>
                 <exclude name=".*" />

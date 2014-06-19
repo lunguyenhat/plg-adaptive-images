@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <extension type="package" version="1.6">
+ <name>Adaptive Images Package</name>
+ <author>redCOMPONENT.com</author>
+ <copyright>redCOMPONENT.com</copyright>
+ <creationDate>June 2014</creationDate>
+ <packagename>adaptiveimages</packagename>
+ <version>0.1</version>
+ <url>http://www.redcomponent.com</url>
+ <packager>Adaptive Images Package</packager>
+ <packagerurl>http://www.redcomponent.com</packagerurl>
+ <description>Adaptive Images Package</description>
+ <files folder="packages">
+   <file type="component" id="redCORE" >redCORE.zip</file>
+   <file type="plugin" id="adaptiveimages" group="system">plg_system_adaptiveimages.zip</file>
+ </files>
+ </extension>

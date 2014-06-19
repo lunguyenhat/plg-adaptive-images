@@ -1,5 +1,15 @@
-tpl.name=redcomponent
-www.dir=/var/www/joomla2
-tpl.version=1.2
-repo.dir=/home/git/wright
-package.dir=/home/git
+# Properties files are configuration files used by PHING scripts containing:
+# key=value
+# more info at: https://redweb.atlassian.net/wiki/display/RWEB/Using+PHING+for+packaging+and+testing+an+extension
+
+# Extension details:
+comp.name=reditem
+
+# Testing Joomla site localhost folder used by build.xml
+www.dir=/var/www/le34
+
+# The current GIT repository location
+repo.dir=/home/luredweb/Git/redITEM2/
+
+# Folder to create the extension .zip build package used by component_packager.xml
+package.dir=/home/luredweb/Git/build/redITEM2
