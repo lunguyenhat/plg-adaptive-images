@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ==================================================================    -->
+<!-- Adaptive images copier                                				   -->
+<!-- This PHING build file copies the current extension files form repo    -->
+<!-- ==================================================================    -->
+<project name="adaptive_images" default="site" basedir=".">
+	<!-- Do initialization stuff -->
+	<property
+			name="extension"
+			value="${plg.name}"
+			override="true" />
+
+	<target name="prepare" >
+		<property file="build.properties" override="true"/>
+		<if>
+			<equals arg1="${extension}" arg2="" />
+			<then>
+				<fail message="Extension not specified, use -Dextension=EXTENSION" />
+			</then>
+		</if>
+	</target>
+
+	<property name="src" value="./code" />
+
+	<target name="site" description="Copies files to a existing joomla site" depends="prepare">
+
+		<!-- Plugin -->
+		<echo message="Copying plugin..." />
+		<copy todir="${www.dir}/plugins/system/adaptive_images" overwrite="true">
+			<fileset dir="${src}">
+                <exclude name="language/**"/>
+                <exclude name=".*" />
+			</fileset>
+		</copy>
+
+		<!-- Languages -->
+		<echo message="Copying languages..." />
+		<copy todir="${www.dir}/language" overwrite="true">
+			<fileset dir="${src}/language">
+				<include name="**" />
+			</fileset>
+		</copy>
+
+	</target>
+</project>
